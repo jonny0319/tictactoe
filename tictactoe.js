@@ -9,6 +9,10 @@ function drawCross(cell) {
   cell.innerHTML = "<div class='cross' />"
 }
 
+function switchPlayer() {
+  player = player === 'circle' ? 'cross' : 'circle'
+}
+
 table.addEventListener("click", function onTableClicked(event) {
   const cell = event.target
   if (event.target.tagName !== "TD") {
@@ -17,9 +21,10 @@ table.addEventListener("click", function onTableClicked(event) {
 
   if (player === 'circle') {
     drawCircle(cell)
-    player = 'cross'
   } else {
     drawCross(cell)
-    player = 'circle'
   }
+
+  switchPlayer()
+
 })
