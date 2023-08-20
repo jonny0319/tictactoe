@@ -14,5 +14,5 @@ table.addEventListener("click", function onTableClicked(event) {
     return; // early return 
   }
 
-  drawSquare(event.target)
+  drawCross(event.target)
 })
