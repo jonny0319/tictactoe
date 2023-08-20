@@ -1,4 +1,5 @@
 const table = document.querySelector("#app table")
+let player = 'circle'
 
 function drawCircle(cell) {
   cell.innerHTML = "<div class='circle' />"
@@ -9,10 +10,16 @@ function drawCross(cell) {
 }
 
 table.addEventListener("click", function onTableClicked(event) {
-  console.log(event.target)
+  const cell = event.target
   if (event.target.tagName !== "TD") {
     return; // early return 
   }
 
-  drawCross(event.target)
+  if (player === 'circle') {
+    drawCircle(cell)
+    player = 'cross'
+  } else {
+    drawCross(cell)
+    player = 'circle'
+  }
 })
