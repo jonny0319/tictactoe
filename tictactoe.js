@@ -1,7 +1,11 @@
 const table = document.querySelector("#app table")
 
-function draw(cell) {
+function drawCircle(cell) {
   cell.innerHTML = "<div class='circle' />"
+}
+
+function drawCross(cell) {
+  cell.innerHTML = "<div class='cross' />"
 }
 
 table.addEventListener("click", function onTableClicked(event) {
@@ -10,5 +14,5 @@ table.addEventListener("click", function onTableClicked(event) {
     return; // early return 
   }
 
-  draw(event.target)
+  drawSquare(event.target)
 })
