@@ -19,12 +19,7 @@ table.addEventListener("click", function onTableClicked(event) {
     return; // early return 
   }
 
-  if (player === 'circle') {
-    drawCircle(cell)
-  } else {
-    drawCross(cell)
-  }
-
+  player === 'circle' ? drawCircle(cell) : drawCross(cell)
   switchPlayer()
 
 })
