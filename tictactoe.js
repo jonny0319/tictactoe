@@ -78,6 +78,17 @@ function isMatchWinnable() {
   return round >= MIN
 }
 
+function showGameEnded() {
+  const div = document.createElement('div')
+  div.classList.add('completed')
+  const playerCap = player.charAt(0).toUpperCase() + player.slice(1)
+  div.innerHTML = `
+  <p>${playerCap} Wins!</p>
+  `
+  const header = document.querySelector('#header')
+  header.append(div)
+}
+
 table.addEventListener("click", function onTableClicked(event) {
   const cell = event.target
   const cellPosition = Number(event.target.dataset.index)
@@ -88,6 +99,7 @@ table.addEventListener("click", function onTableClicked(event) {
   player === 'circle' ? drawCircle(cell) : drawCross(cell)
   recordPosition(cellPosition)
   if (isMatchWinnable() && checkWinner()) {
+    showGameEnded()
     return resetBoard()
   }
   switchPlayer()

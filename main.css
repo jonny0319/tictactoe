@@ -44,3 +44,18 @@ body {
   content: "X";
   color: rgba(255, 115, 50, 0.6);
 }
+
+.completed {
+  position: absolute;
+  z-index: 50;
+  top: 40vh;
+  height: 15%;
+  background-color: RGBA(232, 246, 254, 0.8);
+  width: 100vw;
+}
+
+.completed p {
+  text-align: center;
+  font-size: 60px;
+  line-height: 15%;
+}
