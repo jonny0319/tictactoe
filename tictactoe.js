@@ -37,8 +37,8 @@ function switchPlayer() {
 
 function recordPosition(position) {
   // console.log('position is ', position)
-  player === 'circle' ? circlePosition.push(Number(position)) : crossPosition.push(Number(position))
-  spotTaken = emptyPosition.findIndex(element => element === Number(position))
+  player === 'circle' ? circlePosition.push(position) : crossPosition.push(position)
+  spotTaken = emptyPosition.findIndex(element => element === position)
   emptyPosition.splice(spotTaken, 1)
   // console.log(emptyPosition)
 }
@@ -80,7 +80,7 @@ function isMatchWinnable() {
 
 table.addEventListener("click", function onTableClicked(event) {
   const cell = event.target
-  const cellPosition = event.target.dataset.index
+  const cellPosition = Number(event.target.dataset.index)
   if (event.target.tagName !== "TD") {
     return; // early return 
   }
