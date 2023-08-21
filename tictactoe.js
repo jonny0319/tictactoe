@@ -7,6 +7,11 @@ let circlePosition = []
 let crossPosition = []
 let round = 1
 
+// create array of [1,2,3,4,5,6,7,8,9]
+let emptyPosition = Array.from(Array(10).keys())
+emptyPosition.shift()
+
+
 const victoryLine = [
   [1, 2, 3],
   [4, 5, 6],
@@ -33,6 +38,9 @@ function switchPlayer() {
 function recordPosition(position) {
   // console.log('position is ', position)
   player === 'circle' ? circlePosition.push(Number(position)) : crossPosition.push(Number(position))
+  spotTaken = emptyPosition.findIndex(element => element === Number(position))
+  emptyPosition.splice(spotTaken, 1)
+  // console.log(emptyPosition)
 }
 
 function checkWinner() {
@@ -61,6 +69,8 @@ function resetBoard() {
     crossPosition = []
     round = 1
     player = 'circle'
+    emptyPosition = Array.from(Array(10).keys())
+    emptyPosition.shift()
   }, 1000)
 }
 
