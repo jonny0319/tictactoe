@@ -64,6 +64,10 @@ function resetBoard() {
   }, 1000)
 }
 
+function isMatchWinnable() {
+  return round >= MIN
+}
+
 table.addEventListener("click", function onTableClicked(event) {
   const cell = event.target
   const cellPosition = event.target.dataset.index
@@ -73,7 +77,7 @@ table.addEventListener("click", function onTableClicked(event) {
 
   player === 'circle' ? drawCircle(cell) : drawCross(cell)
   recordPosition(cellPosition)
-  if (round >= MIN && checkWinner()) {
+  if (isMatchWinnable() && checkWinner()) {
     return resetBoard()
   }
   switchPlayer()
