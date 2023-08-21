@@ -63,6 +63,7 @@ function checkWinner() {
 }
 
 function resetBoard() {
+  const endGameDisplay = document.querySelector('.completed')
   setTimeout(() => {
     fullBoard.forEach(element => element.innerHTML = '')
     circlePosition = []
@@ -71,7 +72,8 @@ function resetBoard() {
     player = 'circle'
     emptyPosition = Array.from(Array(10).keys())
     emptyPosition.shift()
-  }, 1000)
+    endGameDisplay.remove()
+  }, 3000)
 }
 
 function isMatchWinnable() {
