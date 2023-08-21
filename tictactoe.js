@@ -1,6 +1,7 @@
 const table = document.querySelector("#app table")
 const fullBoard = document.querySelectorAll('td')
-const MIN = 4
+// minimum rounds to win
+const MIN = 5
 let player = 'circle'
 let circlePosition = []
 let crossPosition = []
@@ -72,7 +73,7 @@ table.addEventListener("click", function onTableClicked(event) {
 
   player === 'circle' ? drawCircle(cell) : drawCross(cell)
   recordPosition(cellPosition)
-  if (round > MIN && checkWinner()) {
+  if (round >= MIN && checkWinner()) {
     return resetBoard()
   }
   switchPlayer()
