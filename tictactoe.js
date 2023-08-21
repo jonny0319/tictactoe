@@ -38,15 +38,18 @@ function checkWinner() {
     for (let i = 0; i < victoryLine.length; i++) {
       if (victoryLine[i].every(element => circlePosition.includes(element))) {
         console.log(`${player} wins`)
+        return true;
       }
     }
   } else {
     for (let i = 0; i < victoryLine.length; i++) {
       if (victoryLine[i].every(element => crossPosition.includes(element))) {
         console.log(`${player} wins`)
+        return true;
       }
     }
   }
+  return false;
 }
 
 table.addEventListener("click", function onTableClicked(event) {
