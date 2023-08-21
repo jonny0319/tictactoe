@@ -1,4 +1,5 @@
 const table = document.querySelector("#app table")
+const fullBoard = document.querySelectorAll('td')
 const MIN = 4
 let player = 'circle'
 let circlePosition = []
@@ -52,6 +53,16 @@ function checkWinner() {
   return false;
 }
 
+function resetBoard() {
+  setTimeout(() => {
+    fullBoard.forEach(element => element.innerHTML = '')
+    circlePosition = []
+    crossPosition = []
+    round = 1
+    player = 'circle'
+  }, 1000)
+}
+
 table.addEventListener("click", function onTableClicked(event) {
   const cell = event.target
   const cellPosition = event.target.dataset.index
@@ -61,8 +72,8 @@ table.addEventListener("click", function onTableClicked(event) {
 
   player === 'circle' ? drawCircle(cell) : drawCross(cell)
   recordPosition(cellPosition)
-  if (round > MIN) {
-    checkWinner()
+  if (round > MIN && checkWinner()) {
+    return resetBoard()
   }
   switchPlayer()
   round++
