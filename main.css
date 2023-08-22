@@ -59,3 +59,18 @@ body {
   font-size: 60px;
   line-height: 15%;
 }
+
+#status-board {
+  position: absolute;
+  z-index: 25;
+  top: 5vh;
+  height: 10%;
+  width: 100vw;
+}
+
+#status-board p {
+  text-align: center;
+  font-size: 30px;
+  /* font-weight: 300; */
+  color: white;
+}

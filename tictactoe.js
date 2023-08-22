@@ -1,8 +1,14 @@
 const table = document.querySelector("#app table")
 const fullBoard = document.querySelectorAll('td')
+const statusBoard = document.querySelector('#status-board')
+
+
 // minimum rounds to win
 const MIN = 5
 let player = 'circle'
+// Capitalized the first letter of player
+const playerCap = player.charAt(0).toUpperCase() + player.slice(1)
+
 let circlePosition = []
 let crossPosition = []
 let round = 1
@@ -10,7 +16,6 @@ let round = 1
 // create array of [1,2,3,4,5,6,7,8,9]
 let emptyPosition = Array.from(Array(10).keys())
 emptyPosition.shift()
-
 
 const victoryLine = [
   [1, 2, 3],
@@ -73,6 +78,7 @@ function resetBoard() {
     emptyPosition = Array.from(Array(10).keys())
     emptyPosition.shift()
     endGameDisplay.remove()
+    showGameStatus()
   }, 3000)
 }
 
@@ -83,7 +89,6 @@ function isMatchWinnable() {
 function showGameEnded() {
   const div = document.createElement('div')
   div.classList.add('completed')
-  const playerCap = player.charAt(0).toUpperCase() + player.slice(1)
   div.innerHTML = `
   <p>${playerCap} Wins!</p>
   `
@@ -91,12 +96,22 @@ function showGameEnded() {
   header.append(div)
 }
 
+function showGameStatus() {
+  statusBoard.innerHTML = `
+  <p>Current Player: ${playerCap}</p>
+  <p>Round: ${round}</p>
+  `
+}
+
+showGameStatus()
+
 table.addEventListener("click", function onTableClicked(event) {
   const cell = event.target
   const cellPosition = Number(event.target.dataset.index)
   if (event.target.tagName !== "TD") {
     return; // early return 
   }
+  showGameStatus()
 
   player === 'circle' ? drawCircle(cell) : drawCross(cell)
   recordPosition(cellPosition)
