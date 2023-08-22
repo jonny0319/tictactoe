@@ -2,13 +2,9 @@ const table = document.querySelector("#app table")
 const fullBoard = document.querySelectorAll('td')
 const statusBoard = document.querySelector('#status-board')
 
-
 // minimum rounds to win
 const MIN = 5
 let player = 'circle'
-// Capitalized the first letter of player
-const playerCap = player.charAt(0).toUpperCase() + player.slice(1)
-
 let circlePosition = []
 let crossPosition = []
 let round = 1
@@ -87,9 +83,11 @@ function isMatchWinnable() {
 }
 
 function showGameEnded() {
+  // Capitalized the first letter of player
+  const playerCap = player.charAt(0).toUpperCase() + player.slice(1)
   const div = document.createElement('div')
   div.classList.add('completed')
-  div.innerHTML = `
+  div.innerHTML = `  
   <p>${playerCap} Wins!</p>
   `
   const header = document.querySelector('#header')
@@ -97,6 +95,7 @@ function showGameEnded() {
 }
 
 function showGameStatus() {
+  const playerCap = player.charAt(0).toUpperCase() + player.slice(1)
   statusBoard.innerHTML = `
   <p>Current Player: ${playerCap}</p>
   <p>Round: ${round}</p>
@@ -121,7 +120,6 @@ table.addEventListener("click", function onTableClicked(event) {
   }
   switchPlayer()
   round++
-
 })
 
 
