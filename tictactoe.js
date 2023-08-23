@@ -87,9 +87,17 @@ function showGameEnded() {
   const playerCap = player.charAt(0).toUpperCase() + player.slice(1)
   const div = document.createElement('div')
   div.classList.add('completed')
-  div.innerHTML = `  
-  <p>${playerCap} Wins!</p>
-  `
+
+  if (emptyPosition.length > 0) {
+    div.innerHTML = `  
+    <p>${playerCap} Wins!</p>
+    `
+  } else {
+    div.innerHTML = `  
+    <p>Tie!</p>
+    `
+  }
+
   const header = document.querySelector('#header')
   header.append(div)
 }
@@ -124,6 +132,7 @@ table.addEventListener("click", function onTableClicked(event) {
     showGameEnded()
     return resetBoard()
   } else if (isMatchTie()) {
+    showGameEnded()
     return resetBoard()
   }
 
