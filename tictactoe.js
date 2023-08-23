@@ -129,7 +129,9 @@ showGameStatus()
 table.addEventListener("click", function onTableClicked(event) {
   const cell = event.target
   const cellPosition = Number(event.target.dataset.index)
-  if (event.target.tagName !== "TD") {
+
+  // do nothing if pressed item is not a cell or if end game message is displayed
+  if (event.target.tagName !== "TD" || header.dataset.display === 'on') {
     return; // early return 
   }
   showGameStatus()
