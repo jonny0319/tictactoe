@@ -1,5 +1,6 @@
 const table = document.querySelector("#app table")
 const fullBoard = document.querySelectorAll('td')
+const header = document.querySelector('#header')
 const statusBoard = document.querySelector('#status-board')
 
 // minimum rounds to win
@@ -75,6 +76,7 @@ function resetBoard() {
     emptyPosition.shift()
     endGameDisplay.remove()
     showGameStatus()
+    header.dataset.display = 'off'
   }, 3000)
 }
 
@@ -83,6 +85,10 @@ function isMatchWinnable() {
 }
 
 function showGameEnded() {
+  // break out of function if end game display is already on
+  if (header.dataset.display === 'on') {
+    return
+  }
   // Capitalized the first letter of player
   const playerCap = player.charAt(0).toUpperCase() + player.slice(1)
   const div = document.createElement('div')
@@ -91,8 +97,8 @@ function showGameEnded() {
   <p>${playerCap} Wins!</p>
   `
 
-  const header = document.querySelector('#header')
   header.append(div)
+  header.dataset.display = 'on'
 }
 
 function showGameTie() {
@@ -102,7 +108,6 @@ function showGameTie() {
   <p>Tie!</p>
   `
 
-  const header = document.querySelector('#header')
   header.append(div)
 }
 
