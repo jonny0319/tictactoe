@@ -102,6 +102,11 @@ function showGameStatus() {
   `
 }
 
+// if no more empty spot to play when nobody wins, it is a tie
+function isMatchTie() {
+  return emptyPosition.length === 0
+}
+
 showGameStatus()
 
 table.addEventListener("click", function onTableClicked(event) {
@@ -114,10 +119,14 @@ table.addEventListener("click", function onTableClicked(event) {
 
   player === 'circle' ? drawCircle(cell) : drawCross(cell)
   recordPosition(cellPosition)
+
   if (isMatchWinnable() && checkWinner()) {
     showGameEnded()
     return resetBoard()
+  } else if (isMatchTie()) {
+    return resetBoard()
   }
+
   switchPlayer()
   round++
 })
